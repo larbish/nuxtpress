@@ -1,0 +1,22 @@
+:root {
+    --body-bg: white;
+    --text-body: theme('colors.gray.600');
+    --color-primary: theme('colors.indigo.500');
+}
+
+html, body {
+    background-color: var(--body-bg);
+    color: var(--text-body);
+}
+
+// Layout
+:root {
+    --header-height: 60px;
+    --toc-margin-top: 1.5rem;
+    --aside-nav-margin-top: 0px;
+}
+
+// Plugin: Typography
+.prose {
+    --tw-prose-body: var(--text-body);
+}
