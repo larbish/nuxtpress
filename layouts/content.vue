@@ -1,5 +1,12 @@
 <script lang="ts" setup>
-const { toc, next, prev } = useContent()
+// const route = useRoute()
+// const contentName = route.meta.contentName as string
+
+// const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(queryContent(contentName)))
+
+// console.log('navigation :>> ', navigation.value);
+// const navLinks = computed(() => navigation.value![0].children)
+
 </script>
 
 <template>
@@ -13,19 +20,17 @@ const { toc, next, prev } = useContent()
             </div>
         </header>
         <div class="container flex justify-center flex-grow mx-auto max-w-8xl">
-            <aside class="h-full bg-gray-100 w-60 sticky top-[calc(var(--header-height)+var(--aside-nav-margin-top))]">
-                <nav>
-                    <p>Hello</p>
-                </nav>
-            </aside>
-            <div class="flex flex-col flex-grow p-8 prose max-w-none">
+            <!-- <aside v-if="route.meta.showAsideNav" class="h-full bg-gray-100 w-60 sticky top-[calc(var(--header-height)+var(--aside-nav-margin-top))]">
+                <ContentAsideNav v-if="navLinks?.length" :navLinks="navLinks"></ContentAsideNav>
+            </aside> -->
+            <div class="flex flex-col flex-grow max-w-4xl p-8 prose">
                 <!-- TODO: Show TOC below header like VitePress -->
                 <slot />
 
                 <div class="flex-grow"></div>
                 <!-- Next/Prev Links -->
-                <hr class="mt-10 mb-6">
-                <div class="grid grid-cols-2 gap-6">
+                <!-- <hr class="mt-10 mb-6"> -->
+                <!-- <div class="grid grid-cols-2 gap-6">
                     <NuxtLink v-if="prev" class="flex flex-col border py-3 px-4 rounded-lg no-underline hover:border-[--color-primary]" :to="prev._path">
                         <span class="text-xs text-gray-500">Previous Page</span>
                         <span>{{ prev.title }}</span>
@@ -34,9 +39,10 @@ const { toc, next, prev } = useContent()
                         <span class="text-xs text-gray-500">Next Page</span>
                         <span>{{ next.title }}</span>
                     </NuxtLink>
-                </div>
+                </div> -->
             </div>
-            <aside class="hidden xl:block h-full shrink-0 mt-[--toc-margin-top] w-60 sticky top-[calc(var(--header-height)+var(--toc-margin-top))]">
+            <!-- * Hide it for now -->
+            <aside v-if="false" class="hidden xl:block h-full shrink-0 mt-[--toc-margin-top] w-60 sticky top-[calc(var(--header-height)+var(--toc-margin-top))]">
                 <TOCContent></TOCContent>
             </aside>
         </div>

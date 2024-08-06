@@ -7,10 +7,8 @@ export default defineNuxtConfig({
     '/': { prerender: true }
   },
   content: {
-    // TODO: IDK why this isn't working, I have to pass layout manually in app.vue
-    // documentDriven: {
-    //   layoutFallbacks: ['doc'],
-    // }
-    documentDriven: true,
+    highlight: {
+      theme: 'dracula'
+    }
   }
 })
