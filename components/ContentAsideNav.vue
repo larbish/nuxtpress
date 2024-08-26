@@ -16,7 +16,7 @@ const navLinks = computed(() => navigation.value![0].children)
 
 <template>
     <ul class="flex flex-col gap-3 text-sm">
-         <li class="pb-4 -mt-4 border-b">
+         <li class="pb-4 -mt-4 border-b lg:hidden">
             <NuxtLink to="/" class="flex items-center gap-3">
                     <img src="https://anu-vue.netlify.app/logo.svg" alt="Logo" class="w-6 h-6" />
                     <span class="text-lg font-medium">NuxtPress</span>
