@@ -1,3 +1,14 @@
+@use "sass:map";
+
+$colors: (
+    "primary": oklch(58.54% 0.204 277.12), /* Indigo 500 */
+    "note": oklch(55.44% 0.041 257.42), /* Slate 500 */
+    "info": oklch(62.31% 0.188 259.81), /* Blue 500 */
+    "success": oklch(72.27% 0.192 149.58), /* Green 500 */
+    "warning": oklch(76.86% 0.165 70.08), /* Amber 500 */
+    "danger": oklch(63.68% 0.208 25.33), /* Red 500 */
+);
+
 :root {
     --body-bg: white;
     --text-body: theme('colors.gray.600');
@@ -7,6 +18,7 @@
 html, body {
     background-color: var(--body-bg);
     color: var(--text-body);
+    scroll-padding: calc(var(--header-height) + 1rem);
 }
 
 // Layout
@@ -19,4 +31,25 @@ html, body {
 // Plugin: Typography
 .prose {
     --tw-prose-body: var(--text-body);
+}
+
+// Prose Content
+.prose {
+    h1, h2, h3, h4, h5, h6 {
+        > a {
+            text-decoration: none;
+        }
+    }
+}
+
+// Component: Alert
+// Loop over the colors map & generate the CSS
+@each $name, $color in $colors {
+    // If color is "success" assume "tip" will be name. For rest, color & name will be same.
+    $tip: if($name == "success", "tip", $name);
+    .np-alert-#{$tip} {
+        $color: $color;
+        border-color: color-mix(in oklch, $color, transparent 75%);
+        background-color: color-mix(in oklch, $color, transparent 93%);
+    }
 }

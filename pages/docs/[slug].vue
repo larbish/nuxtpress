@@ -1,12 +1,8 @@
 <script lang="ts" setup>
 definePageMeta({
-  layout: 'content',
-  contentName: 'blog'
+  layout: 'content', // NuxtPress provides content layout
+  contentName: 'docs' // Name of your content type. In this case, it's `docs`
 })
-
-const route = useRoute()
-
-const { data } = await useAsyncData('blog', () => queryContent(route.path).findOne())
 </script>
 
 <template>
@@ -15,5 +11,6 @@ const { data } = await useAsyncData('blog', () => queryContent(route.path).findO
     <div class="flex-grow"></div>
     <hr>
     <NextPrevPagination></NextPrevPagination>
+    <!-- Feel free to add custom markup like Newsletter CTA etc -->
   </main>
 </template>

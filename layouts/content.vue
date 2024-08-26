@@ -1,48 +1,45 @@
 <script lang="ts" setup>
-// const route = useRoute()
-// const contentName = route.meta.contentName as string
+const route = useRoute()
 
-// const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(queryContent(contentName)))
-
-// console.log('navigation :>> ', navigation.value);
-// const navLinks = computed(() => navigation.value![0].children)
-
+const isAsideVisible = ref(false)
+watch(
+    () => route.path,
+    () => {
+        isAsideVisible.value = false
+    }
+)
 </script>
 
 <template>
     <div class="flex flex-col min-h-screen">
         <header class="sticky top-0 border-b bg-[--body-bg]">
-            <div class="container flex min-h-[--header-height] items-center px-8 py-2 mx-auto header-content">
+            <div class="container max-w-8xl flex min-h-[--header-height] items-center px-8 py-2 mx-auto header-content">
+                <svg @click="isAsideVisible = true" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="lg:hidden me-4 size-6"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/></svg>
                 <NuxtLink to="/" class="flex items-center gap-3">
                     <img src="https://anu-vue.netlify.app/logo.svg" alt="Logo" class="w-6 h-6" />
-                    <span class="text-lg font-medium">My Docs</span>
+                    <span class="text-lg font-medium">NuxtPress</span>
                 </NuxtLink>
+                <div class="flex-grow"></div>
+                <div class="flex gap-4">
+                    <NuxtLink exact-active-class="text-indigo-500" to="/blog">Blog</NuxtLink>
+                    <NuxtLink exact-active-class="text-indigo-500" to="/docs/getting-started">Docs</NuxtLink>
+                </div>
             </div>
         </header>
         <div class="container flex justify-center flex-grow mx-auto max-w-8xl">
-            <!-- <aside v-if="route.meta.showAsideNav" class="h-full bg-gray-100 w-60 sticky top-[calc(var(--header-height)+var(--aside-nav-margin-top))]">
-                <ContentAsideNav v-if="navLinks?.length" :navLinks="navLinks"></ContentAsideNav>
-            </aside> -->
-            <div class="flex flex-col flex-grow max-w-4xl p-8 prose">
+            <div class="fixed inset-0 transition-all ease-in-out bg-black/20 aside-overlay" :class="isAsideVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'" @click="isAsideVisible = false"></div>
+            <aside v-if="!route.meta.hideAside" :class="isAsideVisible ? 'translate-x-0' : '-translate-x-full'" class="fixed transition-transform bg-[--body-bg] left-0 top-0 bottom-0 lg:translate-x-0 lg:sticky w-60 border-r p-8 lg:h-[calc(100dvh-var(--header-height))] lg:top-[calc(var(--header-height)+var(--aside-nav-margin-top))]">
+                <ContentAsideNav></ContentAsideNav>
+            </aside>
+            <div class="flex-grow">
                 <!-- TODO: Show TOC below header like VitePress -->
-                <slot />
-
-                <div class="flex-grow"></div>
-                <!-- Next/Prev Links -->
-                <!-- <hr class="mt-10 mb-6"> -->
-                <!-- <div class="grid grid-cols-2 gap-6">
-                    <NuxtLink v-if="prev" class="flex flex-col border py-3 px-4 rounded-lg no-underline hover:border-[--color-primary]" :to="prev._path">
-                        <span class="text-xs text-gray-500">Previous Page</span>
-                        <span>{{ prev.title }}</span>
-                    </NuxtLink>
-                    <NuxtLink v-if="next" :to="next._path" class="flex flex-col col-start-2 border py-3 px-4 rounded-lg no-underline hover:border-[--color-primary]">
-                        <span class="text-xs text-gray-500">Next Page</span>
-                        <span>{{ next.title }}</span>
-                    </NuxtLink>
-                </div> -->
+                <div class="max-w-3xl p-8 pt-16 mx-auto prose">
+                    <slot />
+                </div>
             </div>
-            <!-- * Hide it for now -->
-            <aside v-if="false" class="hidden xl:block h-full shrink-0 mt-[--toc-margin-top] w-60 sticky top-[calc(var(--header-height)+var(--toc-margin-top))]">
+            
+            
+            <aside class="hidden xl:block h-full shrink-0 mt-[--toc-margin-top] w-60 sticky top-[calc(var(--header-height)+var(--toc-margin-top))]">
                 <TOCContent></TOCContent>
             </aside>
         </div>
