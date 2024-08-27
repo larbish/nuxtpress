@@ -52,7 +52,7 @@ const isPaginationHidden = computed(() => route.meta.hidePagination)
             <slot />
             <template v-if="!isPaginationHidden">
               <div class="flex-grow" />
-              <hr>
+              <hr class="my-8">
               <NextPrevPagination />
             </template>
           </main>
