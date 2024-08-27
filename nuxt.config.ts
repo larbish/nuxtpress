@@ -2,10 +2,15 @@
 export default defineNuxtConfig({
   css: ["@/assets/css/main.scss"],
   devtools: { enabled: true },
-  modules: ['@nuxt/content', '@nuxtjs/tailwindcss'],
+  modules: ['@nuxt/content', '@nuxtjs/tailwindcss', '@nuxt/eslint'],
 
   routeRules: {
     '/': { prerender: true }
+  },
+  eslint: {
+    config: {
+      standalone: false,
+    },
   },
 
   content: {
