@@ -3,6 +3,8 @@
 const route = useRoute()
 const contentName = computed(() => route.path.split('/')[1])
 
+const appConfig = useAppConfig()
+
 const { data: navigation } = await useAsyncData(
   'navigation',
   () => fetchContentNavigation(queryContent(contentName.value)),
@@ -18,8 +20,8 @@ const navLinks = computed(() => navigation.value![0].children)
   <ul class="flex flex-col gap-3 text-sm">
     <li class="pb-4 -mt-4 border-b lg:hidden">
       <NuxtLink to="/" class="flex items-center gap-3">
-        <img src="https://anu-vue.netlify.app/logo.svg" alt="Logo" class="w-6 h-6">
-        <span class="text-lg font-medium">NuxtPress</span>
+        <img :src="appConfig.nuxtPress.logoSrc" alt="Logo" class="w-6 h-6">
+        <span class="text-lg font-medium">{{ appConfig.nuxtPress.title }}</span>
       </NuxtLink>
     </li>
     <li v-for="link in navLinks" :key="link._path">

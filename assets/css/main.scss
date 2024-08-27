@@ -54,3 +54,7 @@ html, body {
         background-color: color-mix(in oklch, $color, transparent 93%);
     }
 }
+
+.np-expand {
+    background-color: color-mix(in oklch, map.get($colors, 'note'), transparent 93%);
+}

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const route = useRoute()
+const appConfig = useAppConfig()
 
 const isAsideVisible = ref(false)
 watch(
@@ -18,18 +19,17 @@ const isPaginationHidden = computed(() => route.meta.hidePagination)
       <div class="container max-w-8xl flex min-h-[--header-height] items-center px-8 py-2 mx-auto header-content">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="cursor-pointer lg:hidden me-4 size-6" @click="isAsideVisible = true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 12h18M3 18h18" /></svg>
         <NuxtLink to="/" class="flex items-center gap-3">
-          <img src="https://anu-vue.netlify.app/logo.svg" alt="Logo" class="w-6 h-6">
-          <span class="text-lg font-medium">NuxtPress</span>
+          <img :src="appConfig.nuxtPress.logoSrc" alt="Logo" class="w-6 h-6">
+          <span class="text-lg font-medium">{{ appConfig.nuxtPress.title }}</span>
         </NuxtLink>
         <div class="flex-grow" />
-        <div class="flex gap-4 text-sm">
-          <NuxtLink exact-active-class="text-indigo-500" class="hover:text-indigo-500" to="/blog">
-            Blog
-          </NuxtLink>
-          <NuxtLink exact-active-class="text-indigo-500" class="hover:text-indigo-500" to="/docs/getting-started">
-            Docs
-          </NuxtLink>
-        </div>
+        <ul v-if="appConfig.nuxtPress.header.links.length" class="flex gap-4 text-sm np-header-links-container">
+          <li v-for="link in appConfig.nuxtPress.header.links" :key="link.title">
+            <NuxtLink exact-active-class="text-indigo-500" class="hover:text-indigo-500" :to="link.to">
+              {{ link.title }}
+            </NuxtLink>
+          </li>
+        </ul>
       </div>
     </header>
     <div class="container flex justify-center flex-grow mx-auto max-w-8xl">
