@@ -4,7 +4,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: 'Expand',
+  title: 'More Info',
 })
 </script>
 
