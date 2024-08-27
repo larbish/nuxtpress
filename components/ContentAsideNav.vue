@@ -23,7 +23,7 @@ const navLinks = computed(() => navigation.value![0].children)
                 </NuxtLink>
          </li>
         <li v-for="link in navLinks" :key="link._path">
-            <NuxtLink exact-active-class="text-indigo-500" :to="link._path">{{ link.title }}</NuxtLink>
+            <NuxtLink exact-active-class="text-indigo-500" class="hover:text-indigo-500" :to="link._path">{{ link.title }}</NuxtLink>
         </li>
     </ul>
 </template>
