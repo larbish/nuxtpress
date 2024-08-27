@@ -23,17 +23,17 @@ const isPaginationHidden = computed(() => route.meta.hidePagination)
           <span class="text-lg font-medium">{{ appConfig.nuxtPress.title }}</span>
         </NuxtLink>
         <div class="flex-grow" />
-        <div class="flex *:px-4 divide-x">
-          <ul v-if="appConfig.nuxtPress.header.links.length" class="flex gap-4 text-sm np-header-links-container">
+        <div class="flex *:px-5 divide-x">
+          <ul v-if="appConfig.nuxtPress.header.links.length" class="flex gap-5 text-sm np-header-links-container">
             <li v-for="link in appConfig.nuxtPress.header.links" :key="link.title">
-              <NuxtLink exact-active-class="text-indigo-500" class="hover:text-indigo-500" :to="link.to">
+              <NuxtLink exact-active-class="text-indigo-500" class="font-medium hover:text-indigo-500" :to="link.to">
                 {{ link.title }}
               </NuxtLink>
             </li>
           </ul>
 
           <!-- Social Links -->
-          <ul v-if="appConfig.nuxtPress.header.socialLinks.length" class="flex gap-3 item-center">
+          <ul v-if="appConfig.nuxtPress.header.socialLinks.length" class="flex gap-4 item-center">
             <li v-for="link in appConfig.nuxtPress.header.socialLinks" :key="link.href">
               <SocialLink :icon="link.icon" :href="link.href" />
             </li>

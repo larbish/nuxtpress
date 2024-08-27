@@ -7,7 +7,7 @@ interface HeaderLink {
 
 const headerLinks: HeaderLink[] = [
   { title: 'Blog', to: '/blog' },
-  { title: 'Docs', to: '/docs/getting-started' },
+  { title: 'Docs', to: '/docs/introduction' },
 ]
 
 const socialLinks: SocialLink[] = [
