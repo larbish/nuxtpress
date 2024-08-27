@@ -9,7 +9,7 @@ const { data: posts } = await useAsyncData('blogs', () => queryContent('blog').f
 </script>
 
 <template>
-  <main class="container max-w-4xl mx-auto mt-[60px] p-8">
+  <div>
     <h1 class="mb-8 text-4xl font-semibold text-gray-900">
       Blog
     </h1>
@@ -20,5 +20,5 @@ const { data: posts } = await useAsyncData('blogs', () => queryContent('blog').f
         </NuxtLink>
       </li>
     </ul>
-  </main>
+  </div>
 </template>
