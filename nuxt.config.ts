@@ -1,11 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  css: ["@/assets/css/main.scss"],
+  css: ['@/assets/css/main.scss'],
   devtools: { enabled: true },
   modules: ['@nuxt/content', '@nuxtjs/tailwindcss', '@nuxt/eslint'],
 
   routeRules: {
-    '/': { prerender: true }
+    '/': { prerender: true },
   },
   eslint: {
     config: {
@@ -15,9 +15,9 @@ export default defineNuxtConfig({
 
   content: {
     highlight: {
-      theme: 'dracula'
-    }
+      theme: 'dracula',
+    },
   },
 
-  compatibilityDate: '2024-08-26'
+  compatibilityDate: '2024-08-26',
 })

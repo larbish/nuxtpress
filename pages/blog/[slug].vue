@@ -13,10 +13,10 @@ const { data } = await useAsyncData(
   () => queryContent('blog').where({ _path: route.path }).findOne(),
   {
     watch: [() => route.path],
-  }
+  },
 )
 </script>
 
 <template>
-    <ContentDoc :query="data"></ContentDoc>
+  <ContentDoc :query="data" />
 </template>
