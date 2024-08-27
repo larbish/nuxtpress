@@ -8,6 +8,8 @@ watch(
         isAsideVisible.value = false
     }
 )
+
+const isPaginationHidden = computed(() => route.meta.hidePagination)
 </script>
 
 <template>
@@ -34,7 +36,14 @@ watch(
             <div class="flex-grow">
                 <!-- TODO: Show TOC below header like VitePress -->
                 <div class="max-w-3xl p-8 pt-16 mx-auto prose">
-                    <slot />
+                    <main class="flex flex-col h-full">
+                        <slot></slot>
+                        <template v-if="!isPaginationHidden">
+                            <div class="flex-grow"></div>
+                            <hr>
+                            <NextPrevPagination></NextPrevPagination>
+                        </template>
+                    </main>
                 </div>
             </div>
             

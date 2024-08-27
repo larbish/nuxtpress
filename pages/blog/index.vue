@@ -2,6 +2,7 @@
 definePageMeta({
   layout: 'content',
   hideAside: true,
+  hidePagination: true,
 })
 
 const { data: posts } = await useAsyncData('blogs', () => queryContent('blog').find())

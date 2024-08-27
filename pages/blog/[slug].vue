@@ -1,19 +1,9 @@
 <script lang="ts" setup>
 definePageMeta({
   layout: 'content',
-  contentName: 'blog'
 })
-
-const route = useRoute()
-
-const { data } = await useAsyncData('blog', () => queryContent(route.path).findOne())
 </script>
 
 <template>
-  <main class="flex flex-col h-full">
-    <ContentDoc />
-    <div class="flex-grow"></div>
-    <hr>
-    <NextPrevPagination></NextPrevPagination>
-  </main>
+  <ContentDoc />
 </template>
