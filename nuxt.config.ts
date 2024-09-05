@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   css: ['@/assets/css/main.scss'],
   devtools: { enabled: true },
-  modules: ['@nuxt/content', '@nuxtjs/tailwindcss', '@nuxt/eslint'],
+  modules: ['@nuxt/content', '@nuxtjs/tailwindcss', '@nuxt/eslint', '@nuxthq/studio'],
 
   routeRules: {
     '/': { prerender: true },
