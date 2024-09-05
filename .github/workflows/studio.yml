@@ -1,3 +1,4 @@
+
 name: studio-nuxt-build
 run-name: studio nuxt build
 
@@ -5,7 +6,7 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches:
-      - master
+      - 'main'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -16,7 +17,7 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: pages
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
@@ -69,6 +70,7 @@ jobs:
         run: npx nuxi build --preset github_pages
         env:
           NUXT_PUBLIC_STUDIO_API_URL: https://api.nuxt.studio
+          
 
       # Deployment job
       - name: Deploy 🚀
